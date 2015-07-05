@@ -315,8 +315,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (self.customSectionHeaderHeight) {
-        return self.customSectionHeaderHeight;
+    if (section == 0) {
+        if (self.customSectionHeaderHeight) {
+            return self.customSectionHeaderHeight;
+        }
+        return [self.tableView sectionHeaderHeight];
     }
     return [self.tableView sectionHeaderHeight];
 }
