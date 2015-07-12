@@ -309,6 +309,8 @@
         infoLabel.textColor = [BPAppearance sharedInstance].headerFooterLabelTextColor;
         infoLabel.font = [BPAppearance sharedInstance].headerFooterLabelFont;
         infoLabel.textAlignment = NSTextAlignmentCenter;
+        infoLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        infoLabel.numberOfLines = 0;
         return infoLabel;
     }
     return [[UIView alloc] initWithFrame:CGRectZero];
