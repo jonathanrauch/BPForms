@@ -47,19 +47,19 @@
 
 - (void)setupLabel {
     self.label = [[UILabel alloc] init];
-    
+
     self.label.textColor = [BPAppearance sharedInstance].infoCellLabelTextColor;
     self.label.font = [BPAppearance sharedInstance].infoCellLabelFont;
     self.label.backgroundColor = [BPAppearance sharedInstance].infoCellLabelBackgroundColor;
     self.label.textAlignment = NSTextAlignmentCenter;
-    
+
     [self.contentView addSubview:self.label];
-    
+
     [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(self.mas_width).offset(-30);
         make.centerX.equalTo(self.mas_centerX);
         make.top.equalTo(self.mas_top);
-        make.height.equalTo(@10);
+        make.height.equalTo(self.mas_height);
     }];
 }
 
