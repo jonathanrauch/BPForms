@@ -48,13 +48,13 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setupTextField];
-        
+
         [self.contentView bringSubviewToFront:self.validationImageView];
-        
+
         [self.mandatoryImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.textField.mas_left).with.offset(-4).priorityHigh();
         }];
-        
+
         [self.validationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.textField.mas_right).priorityHigh();
             make.centerY.equalTo(self.textField.mas_centerY).priorityHigh();
@@ -68,27 +68,27 @@
     if (!textInputClass) {
         textInputClass = [BPFormTextField class];
     }
-    
+
     self.textField = [[textInputClass alloc] init];
-    
+
     self.textField.autocorrectionType = UITextAutocorrectionTypeNo;
     self.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.textField.textColor = [BPAppearance sharedInstance].inputCellTextFieldTextColor;
     self.textField.font = [BPAppearance sharedInstance].inputCellTextFieldFont;
     self.textField.backgroundColor = [BPAppearance sharedInstance].inputCellTextFieldBackgroundColor;
-    
+
     self.textField.layer.borderColor = [BPAppearance sharedInstance].inputCellTextFieldBorderColor.CGColor;
     self.textField.layer.borderWidth = 0.5;
-    
+
     [self.contentView addSubview:self.textField];
-    
+
     [self.widthConstraint uninstall];
     [self.heightConstraint uninstall];
-    
+
     [self.textField mas_updateConstraints:^(MASConstraintMaker *make) {
         self.widthConstraint = make.width.equalTo(self.mas_width).offset(-30);
         make.centerX.equalTo(self.mas_centerX);
-        make.top.equalTo(self.mas_top);
+        make.centerY.equalTo(self.mas_centerY);
         self.heightConstraint = make.height.equalTo(self.mas_height).offset(-self.spaceToNextCell);
     }];
 }
@@ -96,9 +96,9 @@
 - (void)setSpaceToNextCell:(CGFloat)inSpaceToNextCell {
     if (inSpaceToNextCell != _spaceToNextCell) {
         _spaceToNextCell = inSpaceToNextCell;
-        
+
         if (self.customContentHeight == 0) {
-            
+
             [self.heightConstraint uninstall];
             [self.textField mas_updateConstraints:^(MASConstraintMaker *make) {
                 self.heightConstraint = make.height.equalTo(self.mas_height).offset(-inSpaceToNextCell);
@@ -110,7 +110,7 @@
 - (void)setCustomContentHeight:(CGFloat)inCustomContentHeight {
     if (inCustomContentHeight != _customContentHeight) {
         _customContentHeight = inCustomContentHeight;
-        
+
         [self.heightConstraint uninstall];
         [self.textField mas_updateConstraints:^(MASConstraintMaker *make) {
             self.heightConstraint = make.height.equalTo(@(inCustomContentHeight));
@@ -121,7 +121,7 @@
 - (void)setCustomContentWidth:(CGFloat)inCustomContentWidth {
     if (inCustomContentWidth != _customContentWidth) {
         _customContentWidth = inCustomContentWidth;
-        
+
         [self.widthConstraint uninstall];
         [self.textField mas_updateConstraints:^(MASConstraintMaker *make) {
             self.widthConstraint = make.width.equalTo(@(inCustomContentWidth));
